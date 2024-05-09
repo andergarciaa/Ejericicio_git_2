@@ -30,8 +30,30 @@ df$`Customer ID`<- as.character(df$`Customer ID`)
  
    
 # ::  10.	Calcula el precio medio de producto por pedido
-precio_medio_pedido <- df %>% 
-  group_by(Invoice) %>% 
-  summarise(precio_medio = mean(Price))
-precio_medio_pedido
+precio_por_pedido <- df %>% 
+     group_by(Invoice) %>% 
+     summarise(Precio_pedido = sum(Price),
+               num_productos = n())
 
+precio_medio_prod_por_pedido = precio_por_pedido %>% 
+  mutate(precio_medio_por_producto = Precio_pedido / num_productos)
+precio_medio_prod_por_pedido
+
+# :: 11.	Comité por segunda vez
+
+# :: 12.	Calcula el número de productos por pedido
+
+num_productos_por_pedido <- df %>% 
+  group_by(Invoice) %>% 
+  summarise(numero_prods = n())
+num_productos_por_pedido
+
+# :: 13.	Calcula el precio por pedido
+
+precio_por_pedido <- df %>% 
+  group_by(Invoice) %>% 
+  summarise(Precio_pedido = sum(Price))
+precio_por_pedido
+
+# :: 14.	Comitea por última vez
+# :: 15.	Sube todo a github
